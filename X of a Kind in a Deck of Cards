@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool hasGroupsSizeX(vector<int>& deck) {
+        
+        unordered_map<int,int> mp;
+
+        for(auto x:deck){
+            mp[x]++;
+        }
+
+        int count = -1;
+
+        for(auto const&[key, value]:mp){
+            if(count == -1){
+                count = value;
+            }
+            else{
+                count = __gcd(count, value);
+            }
+        }
+        return count>=2;
+    }
+};
